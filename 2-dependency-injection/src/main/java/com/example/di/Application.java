@@ -3,10 +3,18 @@ package com.example.di;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
+// import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+// import org.springframework.boot.autoconfigure.SpringBootApplication;
+// import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+
+// import com.example.di.autowire.AreaCalculatorService;
 
 // import com.example.di.profiles.EnviromentService;
 // import com.example.di.qualifiers.Animal;
@@ -21,7 +29,10 @@ import org.springframework.context.annotation.Bean;
 // import com.example.di.attribute.Coche;
 // import com.example.di.attribute.Motor;
 
-@SpringBootApplication
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration
+//@SpringBootApplication
 public class Application {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
@@ -32,7 +43,17 @@ public class Application {
 	}
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(Application.class);
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression expression =  parser.parseExpression("10 + 20");
+		
+		log.info("Result {}", expression.getValue());
+		
+		/*
+		 * ConfigurableApplicationContext context =
+		 * SpringApplication.run(Application.class); AreaCalculatorService calculator =
+		 * context.getBean(AreaCalculatorService.class); log.info( "Area total {}",
+		 * calculator.calcAreas() );
+		 */
 		
 		/*
 		 * String nombreAplicacion = context.getBean(String.class);
