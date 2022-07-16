@@ -1,2 +1,4 @@
 # directories
 .metadata
+**/.mvn/
+**/.settings/
