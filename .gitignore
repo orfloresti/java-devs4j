@@ -17,3 +17,6 @@
 .sts4-cache
 
 .attach_*
+
+## Compiles 
+*.class
